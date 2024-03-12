@@ -1,4 +1,5 @@
-# Mental Health Text Classification Using Natural Language Processing.
+# Identification of Clinically-Relevant Text Content using Natural Language Processing
+
 
 ## Repository Organisation:
 
