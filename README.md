@@ -4,7 +4,7 @@
 ## Repository Organisation:
 
 - README.md: This file.
-- [**/code**](https://github.com/oscar-anderson/nlp-mental-health-identification/tree/main/code): A folder containing the Python script that implements the analysis.
+- [**/code**](https://github.com/oscar-anderson/nlp-mental-health-identification/tree/main/code): A folder containing the Python script `mental_health_nlp.py`, which implements the analysis.
 - [**/plot**](https://github.com/oscar-anderson/nlp-mental-health-identification/tree/main/plot): A folder containing the figures output from the script, visualising the data and analysis at different stages of the project.
   - /[EDA](https://github.com/oscar-anderson/nlp-mental-health-identification/tree/main/plot/EDA): A subfolder containing the plots output from the Exploratory Data Analysis portion of the project.
   - /[results](https://github.com/oscar-anderson/nlp-mental-health-identification/tree/main/plot/results): A subfolder containing the plots output from the model prediction and evaluation portion of the project.
