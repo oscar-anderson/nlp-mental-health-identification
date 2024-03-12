@@ -52,10 +52,22 @@ A number of essential data preprocessing steps are then performed.
 Several steps are then taken to explore patterns within the dataset.
 #### 1) Distribution of healthy and illness-indicative data:
   - The script calculates and visualises the counts of each category in the 'label' column to show and understand the distribution of healthy and illness-indicative data in the dataset.
+
+<img src = 'https://github.com/oscar-anderson/nlp-mental-health-identification/blob/main/plot/EDA/data_distribution.png' width="600" height="500">
+
 #### 2) Word cloud generation:
 - Word clouds are used to visualise the words used throughout all of the text data, within the healthy text data and within the illness-indicative text data.
+
+<img src = 'https://github.com/oscar-anderson/nlp-mental-health-identification/blob/main/plot/EDA/wordcloud_all.png' width="600" height="300">
+<img src = 'https://github.com/oscar-anderson/nlp-mental-health-identification/blob/main/plot/EDA/wordcloud_healthy.png' width="600" height="300">
+<img src = 'https://github.com/oscar-anderson/nlp-mental-health-identification/blob/main/plot/EDA/wordcloud_ill.png' width="600" height="300">
+
 #### 3) Word frequency plots:
 - Bar charts are used to display the most frequently used words throughout all of the text data, within the healthy text data and within the illness-indicative text data.
+
+<img src = 'https://github.com/oscar-anderson/nlp-mental-health-identification/blob/main/plot/EDA/all_word_frequencies.png' width="600" height="500">
+<img src = 'https://github.com/oscar-anderson/nlp-mental-health-identification/blob/main/plot/EDA/healthy_word_frequencies.png' width="600" height="500">
+<img src = 'https://github.com/oscar-anderson/nlp-mental-health-identification/blob/main/plot/EDA/illness_word_frequencies.png' width="600" height="500">
 
 ### Multinomial Naive Bayes:
 The script then implements a Multinomial Naive Bayes algorithm for the classification of the text data, specifically used to determine whether a given piece of text is indicative of mental illness. The following key steps were undertaken to achieve this:
