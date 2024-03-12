@@ -3,7 +3,7 @@
 ## Repository Organisation:
 
 - [**/code**](link): A folder containing the Python script that implements the analysis.
-- [**/data**](link): A folder containing the dataset used for the project (`text_data3.csv`).
+- [**/data**](link): A folder containing the dataset used for the project.
 - [**/plot**](link): A folder containing the figures output from the script, visualising the data and analysis at different stages of the project.
 
 ## Dataset
