@@ -248,4 +248,3 @@ df = preprocess_data(df)
 explore_data(df)
 
 run_model(df)
-
