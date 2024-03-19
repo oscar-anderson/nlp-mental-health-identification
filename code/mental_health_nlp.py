@@ -1,3 +1,12 @@
+'''
+Identification of Clinically-Relevant Text Content using Natural Language Processing.
+
+This script loads a dataset containing text data, cleans and preprocesses this
+text data, carries out a basic exploratory data analysis (EDA) and utilises a
+Multinomial Naive Bayes model for classification, and evaluates the model's
+performance.
+'''
+
 # Import dependencies.
 import numpy as np
 import pandas as pd
@@ -16,17 +25,37 @@ import seaborn as sns
 
 # Load data.
 def load_data(data_path: str) -> pd.DataFrame:
+    '''
+    Loads the dataset from a CSV file.
+
+    Input:
+        - data_path (str): Path to the CSV file.
+
+    Output:
+        - df (pd.DataFrame): Loaded DataFrame containing the dataset.
+    '''
     df = pd.read_csv(data_path)
     return df
 
 # Check dataset contents.
 def check_data(df: pd.DataFrame) -> None:
+    '''
+    Checks and provides a summary of the dataset contents.
+
+    Input:
+        - df (pd.DataFrame): DataFrame containing the dataset.
+
+    Output:
+        None
+    '''
     print(df.head(), '\n')
-    print(df.info(), '\n')
-    print(df.describe(), '\n')
     
-    num_null = df.isnull().sum() # Check missing data count.
-    print('Missing data count: \n', num_null, '\n')
+    num_null_pre = df.isnull().sum() # Check missing data count.
+    print('Missing data count: \n', num_null_pre, '\n')
+    if num_null_pre.any() > 0:
+        df = df.dropna()
+        num_null_post = df.isnull().sum()
+        print('Missing data removed: \n', num_null_post, '\n')
     
     for column in df.columns: # Check data types count.
         data_types_count = df[column].apply(type).value_counts()
@@ -48,8 +77,17 @@ def check_data(df: pd.DataFrame) -> None:
 
 # Preprocess data.
 def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
-    clean_text = []
+    '''
+    Preprocesses the text data.
 
+    Input:
+        - df (pd.DataFrame): DataFrame containing the text data.
+
+    Output:
+        - df (pd.DataFrame): Preprocessed DataFrame.
+    '''
+    clean_text = []
+    
     lemmatiser = WordNetLemmatizer()
     stop_words = set(stopwords.words('english'))
 
@@ -72,6 +110,17 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
 
 # Generate word cloud of text data.
 def generate_wordcloud(text_data: pd.Series, title: str, colourscheme: str) -> None:
+    '''
+    Generates a word cloud of the text data.
+
+    Input:
+        - text_data (pd.Series): Series containing the text data.
+        - title (str): Title of the word cloud.
+        - colourscheme (str): Colormap for the word cloud.
+
+    Output:
+        None
+    '''
     text_string = ' '.join(text_data)
     wordcloud = WordCloud(width = 1000,
                   height = 500,
@@ -87,6 +136,17 @@ def generate_wordcloud(text_data: pd.Series, title: str, colourscheme: str) -> N
     
 # Visualise frequencies of most common words in data.
 def plot_word_frequencies(text_data: pd.Series, title: str, colourscheme: str) -> None:
+    '''
+    Visualises the frequencies of the most common words in the text data.
+
+    Parameters:
+        - text_data (pd.Series): Series containing the text data.
+        - title (str): Title of the plot.
+        - colourscheme (str): Colormap for the plot.
+
+    Returns:
+        None
+    '''
     text_string = ' '.join(text_data)
     all_words = text_string.split()
     all_words_count = Counter(all_words)
@@ -106,6 +166,15 @@ def plot_word_frequencies(text_data: pd.Series, title: str, colourscheme: str) -
 
 # Exploratory Data Analysis (EDA).
 def explore_data(df: pd.DataFrame) -> None:
+    '''
+    Performs exploratory data analysis by generating word clouds and visualising word frequencies for all text data, healthy text data, and illness-indicative text data.
+
+    Parameters:
+        df (pd.DataFrame): DataFrame containing the dataset.
+
+    Returns:
+        None
+    '''
     # Generate word clouds.
     all_text_data = df['text']
     generate_wordcloud(all_text_data, 'Word Cloud of All Text Data', 'viridis')
@@ -125,6 +194,15 @@ def explore_data(df: pd.DataFrame) -> None:
 
 # Build, apply and evaluate Multinomial Naive Bayes model.
 def run_model(df: pd.DataFrame) -> None:
+    '''
+    Implements the Multinomial Naive Bayes model for text classification.
+
+    Parameters:
+        - df (pd.DataFrame): DataFrame containing the dataset with 'text' and 'label' columns.
+
+    Returns:
+        None
+    '''
     X_train, X_test, y_train, y_test = train_test_split(df['text'],
                                                         df['label'],
                                                         test_size = 0.2
@@ -159,7 +237,7 @@ def run_model(df: pd.DataFrame) -> None:
     plt.show()
     
 
-# Call functions to run study.
+# Call functions to perform investigation.
 data_path = 'C:/Users/Oscar/Documents/Projects/mental_health_nlp/text_data3.csv'
 df = load_data(data_path)
 
@@ -170,3 +248,4 @@ df = preprocess_data(df)
 explore_data(df)
 
 run_model(df)
+
