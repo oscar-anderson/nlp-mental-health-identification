@@ -19,37 +19,39 @@ For the current project, a more balanced portion of data was taken from the heal
 
 ## Code overview
 
-### Loading Data:
+### Loading Data
 The script begins by importing the Python libraries required to undertake the project. These included NumPy, pandas, matplotlib, re, NLTK, wordcloud, sklearn and seaborn. The dataset, `text_data3.csv`, is then loaded into a pandas DataFrame for subsequent analysis.
+
+### Checking data
+The raw dataset is then checked through to provide a summary and highlight features for consideration during preprocessing. Specifically, through this step:
+- The first four rows of the dataset are displayed.
+- The number of missing data entries are counted and displayed. If there is any data missing, these rows are automatically removed.
+- The number of different data types within each columns are counted and displayed.
+- The frequencies of the data of each category (i.e. 'healthy' or 'illness-indicative') are visualised.
 
 ### Preprocessing
 A number of essential data preprocessing steps are then performed.
-#### 1) Missing values:
-  - The script checks for missing data in the DataFrame. If there are any null or NaN values, the rows containing these empty cells are removed.
 
-#### 2) Data types:
-  - For each column in the DataFrame, the script counts the occurrences of different data types and prints the results. This allows for the checking of any anomalous data types within each column of the dataset.
-
-#### 3) Lowercase all text data:
+#### 1) Lowercase all text data:
   - All text data in the 'text' column is converted to lowercase, to ensure consistency.
 
-#### 4) Remove URLs:
+#### 2) Remove URLs:
   - A regular expression is used to remove any URLs from the text data.
 
-#### 5) Remove emojis:
+#### 3) Remove emojis:
   - Emojis, identified by their non-ASCII nature and unique character sets, are removed to ensure compatibility between the data and processing packages.
 
-#### 6) Remove non-alphanumeric characters:
+#### 4) Remove non-alphanumeric characters:
   - A regular expression is used to remove non-alphanumeric characters from the text data.
 
-#### 7) Lemmatisation:
+#### 5) Lemmatisation:
   - Each text entry is then tokenised, allowing for the lemmatisation of individual words using NLTK's WordNetLemmatizer.
  
-#### 8) Remove stop words:
+#### 6) Remove stop words:
   - Using NLTK's English stop words set, stop words (e.g. 'the', 'and', 'is', etc.) are removed.
 
 ### Exploratory Data Analysis (EDA)
-Several steps are then taken to explore patterns within the dataset.
+Several steps are taken to explore patterns within the dataset.
 #### 1) Distribution of healthy and illness-indicative data:
   - The script calculates and visualises the counts of each category in the 'label' column to show and understand the distribution of healthy and illness-indicative data in the dataset.
 
@@ -69,7 +71,7 @@ Several steps are then taken to explore patterns within the dataset.
 <img src = 'https://github.com/oscar-anderson/nlp-mental-health-identification/blob/main/plot/EDA/healthy_word_frequencies.png' width="600" height="500">
 <img src = 'https://github.com/oscar-anderson/nlp-mental-health-identification/blob/main/plot/EDA/illness_word_frequencies.png' width="600" height="500">
 
-### Multinomial Naive Bayes:
+### Multinomial Naive Bayes
 The script then implements a Multinomial Naive Bayes algorithm for the classification of the text data, specifically used to determine whether a given piece of text is indicative of mental illness. The following key steps were undertaken to achieve this:
 
 #### 1) Dataset splitting
